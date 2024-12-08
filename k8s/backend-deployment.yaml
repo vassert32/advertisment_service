@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: sha256:366e591ba2e0a6350099ed8bca7f6f99098653edd4d6544e0e9ca50e8879c7c8 # Локальный образ
+
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://admin:admin@postgres:5432/ads_db"
+        - name: ML_SERVICE_URL
+          value: "http://ml-service:8001/generate_text/"

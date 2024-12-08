@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-module
+  labels:
+    app: ml-module
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-module
+  template:
+    metadata:
+      labels:
+        app: ml-module
+    spec:
+      containers:
+      - name: ml-module
+        image: sha256:a0eef822d05555c2db64d53e3b73253160afee7b386209c7f25c2ca266d96f64 # Локальный образ
+
+        ports:
+        - containerPort: 8001
