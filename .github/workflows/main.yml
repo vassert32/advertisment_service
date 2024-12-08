@@ -19,10 +19,10 @@ jobs:
     - name: Clean up old resources
       run: |
         # Останавливаем и удаляем все контейнеры и тома
-        docker-compose down --volumes --remove-orphans
+        docker compose down --volumes --remove-orphans
         docker container prune -f
         docker volume prune -f
 
     # Шаг 3: Строим и запускаем сервисы Docker
     - name: Build and deploy
-      run: docker-compose up -d --build
+      run: docker compose up -d --build
